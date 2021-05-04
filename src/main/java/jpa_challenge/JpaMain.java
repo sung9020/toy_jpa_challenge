@@ -23,7 +23,13 @@ public class JpaMain {
         transaction.begin();
         try {
             Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            em.persist(order);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order); // 연관 관계의 주인에서 하위 엔티티를 세팅해야한다.
+            // 단방향으로 설계해도 어플리케이션 개발이 가능함.
+
+            em.persist(orderItem);
 
             transaction.commit();
         }catch(Exception e){
