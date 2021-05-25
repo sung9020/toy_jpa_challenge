@@ -1,5 +1,6 @@
 package jpa_challenge;
 
+import jpa_challenge.domain.Book;
 import jpa_challenge.domain.Order;
 import jpa_challenge.domain.OrderItem;
 
@@ -22,14 +23,11 @@ public class JpaMain {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         try {
-            Order order = new Order();
-            em.persist(order);
+            Book book =new Book();
+            book.setName("JPA");
+            book.setAuthor("섬인규");
 
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order); // 연관 관계의 주인에서 하위 엔티티를 세팅해야한다.
-            // 단방향으로 설계해도 어플리케이션 개발이 가능함.
-
-            em.persist(orderItem);
+            em.persist(book);
 
             transaction.commit();
         }catch(Exception e){

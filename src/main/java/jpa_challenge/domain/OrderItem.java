@@ -2,13 +2,15 @@ package jpa_challenge.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 /*
  *
  * @author snow
  * @since 2021/04/26
  */
 @Entity
-public class OrderItem {
+public class OrderItem extends BaseEntity {
     @Id @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
@@ -16,14 +18,14 @@ public class OrderItem {
 //    @Column(name = "ORDER_ID")
 //    private Long OrderId;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order; // 연관 관계의 주인
 //
 //    @Column(name = "ITEM_ID")
 //    private Long Itemid;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
